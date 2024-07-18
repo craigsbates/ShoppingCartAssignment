@@ -21,19 +21,24 @@ print(cart)
 
 # get item details
 ```
-print(f"Coffee information: {cart.get_item('coffee')}")
-print(f"Milk information: {cart.get_item('milk')}")
-print(f"Tea information: {cart.get_item('tea')}")
+coffee = cart.get_item('coffee')
+print(f"Coffee information: {coffee}")
+milk = cart.get_item('milk')
+print(f"Milk information: {milk}")
+tea = cart.get_item('tea')
+print(f"Tea information: {tea}")
 ```
 
 # get amount
 ```
-print(f"Cart total items: {cart.get_cart_item_quantity()}")  # 9
+cart_item_total = cart.get_cart_item_quantity()
+print(f"Cart total items: {cart_item_total}")  # 9
 ```
 
 # get total value
 ```
-print(f"Cart total value: {cart.get_cart_total_value()}")  # 15.68
+cart_total_value = cart.get_cart_total_value()
+print(f"Cart total value: {cart_total_value}")  # 15.68
 ```
 
 # remove items
