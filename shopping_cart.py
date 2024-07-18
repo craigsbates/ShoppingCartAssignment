@@ -21,9 +21,9 @@ class ShoppingCart:
 
     def add_item(self, item_name: str, item_price=0.0, amount=1):
         """
-        Add an items with the given information to the cart contents.
+        Add an item with the given information to the cart contents.
         Will add an dict to class _items dict with the key being item's name
-        and contents within a dict.
+        and contents, item_price and amount within a dict.
 
         Args:
             item_name (str): Name of the item.
@@ -41,11 +41,11 @@ class ShoppingCart:
 
     def add_items(self, items: dict):
         """
-        Add multiple items to cart.
+        Add multiple items to the cart.
 
         Args:
             items (dict): Dict represenation of items to add to cart
-            format {item_name {cost, amount}}
+            format {item_name {cost:float, amount:int}}
         """
         for key, value in items.items():
             self.add_item(key, value.get("price"), value.get("amount"))
@@ -53,10 +53,12 @@ class ShoppingCart:
     def remove_item(self, item_name: str, amount=1, completely=False):
         """
         Remove the item of given name from cart should it exist.
+        Can remove an amount, or all using completely flag
 
         Args:
             item_name (str): Name of item to remove.
             amount (int, options): Number of item to remove. Defaults to 1.
+            completely (bool): Remove all items of name if True. Defaults to False.
         """
         if item_name in self._items:
             if completely or self._items[item_name]["amount"] <= amount:
@@ -91,7 +93,7 @@ class ShoppingCart:
         Get the total value of the carts contents.
 
         Returns:
-            float: Total value of the card rounded to 2 decimal places.
+            float: Total value of the cart rounded to 2 decimal places.
         """
         return round(
             sum(i.get("price") * i.get("amount") for i in self._items.values()), 2
@@ -105,5 +107,5 @@ class ShoppingCart:
             item_name (str): Name of the item to update the price for.
             item_price (float): New value to update item price to.
         """
-        if self._items.get(item_name):
+        if item_name in self._items:
             self._items[item_name]["price"] = round(item_price, 2)
